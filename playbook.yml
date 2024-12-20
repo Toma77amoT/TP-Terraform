@@ -1,0 +1,22 @@
+---
+- name: Playbook Ansible
+  hosts: localhost
+  tasks:
+    - name: Vérifier les versions des outils
+      command: "{{ item }}"
+      with_items:
+        - terraform version
+        - python3 --version
+        - ansible --version
+
+    - name: Configurer UFW
+      become: true
+      ansible.builtin.shell: |
+        ufw default deny incoming
+        ufw default allow outgoing
+        ufw allow ssh
+        ufw enable
+
+    - name: Vérifier Fail2Ban
+      become: true
+      ansible.builtin.command: fail2ban-client --version

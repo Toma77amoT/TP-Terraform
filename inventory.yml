@@ -1,0 +1,6 @@
+groupe1:
+  hosts:
+    node-1:
+groupe2:
+  hosts:
+    node-2:
